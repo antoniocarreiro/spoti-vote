@@ -21,7 +21,7 @@ const backendExtension = '/b';
 
 const addressInside = process.env.INTERNALADDRESS || 'localhost';
 const portFront = process.env.PORT || 8080;
-const portBack = process.env.PORTBACK 8888;
+const portBack = process.env.PORTBACK || 8888;
 const redirect_uri = 'http://' + addressOutside + ':' + portOutside + backendExtension + '/callback';
 
 const secTillDelete = 60;

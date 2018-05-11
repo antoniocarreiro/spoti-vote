@@ -35,11 +35,11 @@ class LoginButtonSecondary extends Component {
 	toggleHover() {
 		this.setState({
 			hover: !this.state.hover
-		})
+		});
 	}
 
 	login() {
-		window.location.href = 'http://' + ipAddress + ':' + port + backendExtension + '/join';
+		window.location.href = 'http://' + ipAddress + ':' + port + '/join';
 	}
 
 	render() {
