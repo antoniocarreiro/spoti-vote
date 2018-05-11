@@ -3,8 +3,8 @@ import '../../css/selectors.css';
 
 let constants = require('../../js/constants');
 const ipAddress = window.location.hostname || 'localhost';
-const portFront = window.location.port || 80;
-const portBack = 8888;
+const port = window.location.port || 80;
+const backendExtension = '/b';
 
 let defaultStyle = {
 	// color: constants.colors.font,
@@ -37,7 +37,7 @@ class LoginButton extends Component {
 	}
 
 	login() {
-		window.location.href = 'http://' + ipAddress + ':' + portBack + '/login';
+		window.location.href = 'http://' + ipAddress + ':' + port + backendExtension + '/login';
 	}
 
 	render() {

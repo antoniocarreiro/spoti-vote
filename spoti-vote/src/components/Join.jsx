@@ -6,6 +6,7 @@ const constants = require('../js/constants');
 const ipAddress = window.location.host || 'localhost';
 const portFront = window.location.port || 80;
 const portBack = 8888;
+const backendExtension = '/b'
 
 class Join extends Component {
 	render() {

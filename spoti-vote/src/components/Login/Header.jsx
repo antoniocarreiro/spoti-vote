@@ -4,8 +4,8 @@ import logo from '../../img/spotiLogo.svg';
 let constants = require('../../js/constants');
 let backgroundColor = constants.colors.background;
 const ipAddress = window.location.hostname || 'localhost';
-const portFront = window.location.port || 80;
-const portBack = 8888;
+const port = window.location.port || 80;
+const backendExtension = '/b';
 
 let defaultDimensions = {
 	height: '5em',
@@ -103,7 +103,7 @@ class Header extends Component {
 					</li>
 					<li style={divider}></li>
 					<li style={itemStyle} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
-						<a style={linkStyle} href={'http://' + ipAddress + ':' + portBack + '/login'}>Host</a>
+						<a style={linkStyle} href={'http://' + ipAddress + ':' + port + backendExtension + '/login'}>Host</a>
 					</li>
 					<li style={{
 							...itemStyle,

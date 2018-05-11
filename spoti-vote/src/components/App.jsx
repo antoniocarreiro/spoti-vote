@@ -10,8 +10,8 @@ import Cookies from 'universal-cookie';
 
 const constants = require('../js/constants');
 const ipAddress = window.location.host || 'localhost';
-const portFront = window.location.port || 8080;
-const portBack = 8888;
+const port = window.location.port || 80;
+const backendExtension = '/b';
 
 const cookies = new Cookies();
 
@@ -48,7 +48,7 @@ let defaultActivePlaylist = {
 class App extends Component {
 	constructor() {
 		super();
-		this.socket = socketIOClient('http://' + ipAddress + ':' + portBack);
+		this.socket = socketIOClient('http://' + ipAddress + ':' + port + backendExtension);
 		let token = cookies.get('token');
 		if (token === undefined) {
 			token = null;
@@ -57,7 +57,7 @@ class App extends Component {
 		this.state = {
 			token: token,
 			roomId: window.location.pathname.split('/')[2],
-			loginPage: 'http://' + ipAddress + ':' + portFront,
+			loginPage: 'http://' + ipAddress + ':' + port,
 			isHost: false,
 			connectedUser: [],
 			playlists: [],
