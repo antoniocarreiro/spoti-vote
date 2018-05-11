@@ -91,7 +91,7 @@ app.get('/callback', async (req, res) => {
 * @Returns ResponseCode of 200
 * @Returns content Array of all the rooms
 */
-app.get('/rooms', async (req, res) => {
+app.get('/b/rooms', async (req, res) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 
 	let roomIds = [];
