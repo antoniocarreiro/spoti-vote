@@ -27,8 +27,10 @@ Then clone my repository using:\
 
 The following Environment Variables are key for the usage of this app. You want to set them using `SET` on Windows or `EXPORT` on a OSX. If this doesn't work try to set them in `/etc/environment`.
 \
-`PORT=80`\
-`ADDRESS="localhost"`\
+`PORT=8080`\
+`INTERNALADDRESS="localhost"`\
+`PORTOUTSIDE=80`\
+`ADDRESS="spoti-vote.com"`\
 `SPOTIFY_CLIENT_ID="FOO"`\
 `SPOTIFY_CLIENT_SECRET="BAR"`
 \
