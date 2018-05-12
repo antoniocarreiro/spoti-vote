@@ -42,7 +42,7 @@ server {
     }
     
     location /b {
-        proxy_passhttp://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;
+        proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -51,6 +51,8 @@ server {
     }
 }
 ```
+For more info see [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04#set-up-reverse-proxy-server).
+
 Then clone my repository using:\
 `git clone https://github.com/Gabsii/spoti-vote.git`
 
