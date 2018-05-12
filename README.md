@@ -25,7 +25,7 @@ To use my webpage, you first want to download [NodeJS](https://nodejs.org/en/).
 You also have to install and configure [NGINX](https://www.nginx.com/).
 If your on ubuntu you can easily install it with `sudo apt-get install nginx`.
 To configure NGINX you have to open up `/etc/nginx/sites-available/default`, and add a server with two locations.
-Heres an example:\
+Heres an example:
 ```
 server {
     listen 80;
