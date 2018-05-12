@@ -26,30 +26,31 @@ You also have to install and configure [NGINX](https://www.nginx.com/).
 If your on ubuntu you can easily install it with `sudo apt-get install nginx`.
 To configure NGINX you have to open up `/etc/nginx/sites-available/default`, and add a server with two locations.
 Heres an example:\
-`server {`
-`    listen 80;`
-`	`
-`    server_name YOUR_EXTERNAL_IP_ADDRESS;`
-`	`
-`    location / {`
-`        proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:FRONTEND_PORT;`
-`        proxy_http_version 1.1;`
-`        proxy_set_header Upgrade $http_upgrade;`
-`        proxy_set_header Connection 'upgrade';`
-`        proxy_set_header Host $host;`
-`        proxy_cache_bypass $http_upgrade;`
-`    }`
-`    `
-`    location /b {`
-`        proxy_passhttp://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;`
-`        proxy_http_version 1.1;`
-`        proxy_set_header Upgrade $http_upgrade;`
-`        proxy_set_header Connection 'upgrade';`
-`        proxy_set_header Host $host;`
-`        proxy_cache_bypass $http_upgrade;`
-`    }`
-`}`
-
+```
+server {
+    listen 80;
+	
+    server_name YOUR_EXTERNAL_IP_ADDRESS;
+	
+    location / {
+        proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:FRONTEND_PORT;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+    
+    location /b {
+        proxy_passhttp://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
 Then clone my repository using:\
 `git clone https://github.com/Gabsii/spoti-vote.git`
 
