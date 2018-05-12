@@ -110,7 +110,7 @@ app.get(backendExtension + '/rooms', async (req, res) => {
 /**
 * Is called when a new connection is established
 */
-io.of('/b').on('connection', (socket) => {
+io.on('connection', (socket) => {
 	//Local varibles, can only be used by the same connection (but in every call)
 	console.log('connection enabled');
 	let roomId = null;
