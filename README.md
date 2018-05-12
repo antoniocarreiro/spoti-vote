@@ -24,7 +24,7 @@ To solve this problem I thought about creating a website where users could choos
 To use my webpage, you first want to download [NodeJS](https://nodejs.org/en/).
 You also have to install and configure [NGINX](https://www.nginx.com/).
 If your on ubuntu you can easily install it with `sudo apt-get install nginx`.
-To configure NGINX you have to open up `/etc/nginx/sites-available/default`, and add a server with two locations.
+To configure NGINX you have to open up `/etc/nginx/sites-available/default`, and add a server with three locations.
 Heres an example:
 ```
 server {
@@ -42,6 +42,15 @@ server {
     }
     
     location /b {
+        proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+    
+    location /socket.io {
         proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
