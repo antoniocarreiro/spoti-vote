@@ -76,7 +76,7 @@ app.get(backendExtension + '/callback', async (req, res) => {
 		json: true
 	};
 	request.post(authOptions, async (error, response, body) => {
-		let uri = 'https://' + addressOutside + ':' + portOutside + '/app';
+		let uri = 'http://' + addressOutside + ':' + portOutside + '/app';
 		let room = new Room(body.access_token, rooms, 4);
 
 		if (await room.fetchData() == true) {
