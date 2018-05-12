@@ -55,28 +55,28 @@ Then clone my repository using:\
 `git clone https://github.com/Gabsii/spoti-vote.git`
 
 The following Environment Variables are key for the usage of this app. You want to set them using `SET` on Windows or `EXPORT` on a OSX. If this doesn't work try to set them in `/etc/environment`.
-\
-`PORT=8080`\
-`PORTBACK=8888`\
-`INTERNALADDRESS="localhost"`\
-`PORTOUTSIDE=80`\
-`ADDRESS="spoti-vote.com"`\
-`SPOTIFY_CLIENT_ID="FOO"`\
-`SPOTIFY_CLIENT_SECRET="BAR"`
-\
-After successfully cloning the repository, you want to startup a commandline in its folder and run `npm install` in:\
-\
-`.`\
-`+-- spoti-vote`\
-`|   +-- execute command here`\
-`+-- spoti-vote-backend`\
-`|   +-- execute command here`\
-\
-then manover back to the root folder and run:\
-\
-`npm install pm2 -g`\
-`pm2 start ecosystem.config.js`\
-\
+```
+PORT=8080
+PORTBACK=8888
+INTERNALADDRESS="localhost"
+PORTOUTSIDE=80
+ADDRESS="spoti-vote.com"
+SPOTIFY_CLIENT_ID="FOO"
+SPOTIFY_CLIENT_SECRET="BAR"
+```
+After successfully cloning the repository, you want to startup a commandline in its folder and run `npm install` in:
+```
+.
++-- spoti-vote
+|   +-- execute command here
++-- spoti-vote-backend
+|   +-- execute command here
+```
+then manover back to the root folder and run:
+```
+npm install pm2 -g
+pm2 start ecosystem.config.js
+```
 =======
 Thanks to [MPJ](https://github.com/mpj/oauth-bridge-template) for providing a framework for the backend-logic.
 
