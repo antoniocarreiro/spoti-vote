@@ -4,6 +4,9 @@ import LoginCode from './Login/LoginCode.jsx';
 import LoginButton from './Login/LoginButton.jsx';
 
 const constants = require('../js/constants');
+const ipAddress = window.location.host || 'localhost';
+const port = window.location.port || 443;
+const backendExtension = '/b';
 
 class Join extends Component {
 
@@ -24,7 +27,7 @@ class Join extends Component {
 			}}>
 			<header style={{
 					width: '100%',
-					height: '100px',
+					height: '90px',
 					backgroundColor: constants.colors.background,
 					display: 'flex',
 					justifyContent: 'center',
@@ -32,7 +35,8 @@ class Join extends Component {
 				}}>
 				<a href="/" style={{
 						fontSize: "2.5em",
-						textAlign: 'center'
+						textAlign: 'center',
+						color: constants.colors.green
 					}}>Spoti-Vote</a>
 			</header>
 			<div style={{
@@ -47,28 +51,28 @@ class Join extends Component {
 				}}>
 				<div style={{
 						fontSize: "2em",
-						marginTop: "2em"
+						marginTop: "1.5em",
+						textAlign: 'center'
 					}}>Join a Spoti-Vote Room</div><br/>
 				<br/>
-				<div>Ask your friend what the Room Code is and enter it below</div>
+				<div style={{
+						textAlign: 'center'
+					}}>Ask your friend for the Room Code and enter it below:</div>
 				<br/>
-				<br/><br/>
+				<br/>
 				<br/>
 				<div style={{
 						fontSize: "1.5em"
 					}}>Room Code</div>
 				<LoginCode/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
 				<div style={{
-						marginTop: "2em",
-						marginBottom: "0.5em"
-					}}>Or host your own Room!</div>
-				<LoginButton/>
+						position: 'absolute',
+						bottom: '50px'
+					}}>
+					<a href={'https://' + ipAddress + ':' + port + backendExtension + '/login'} style={{
+							color: constants.colors.green
+						}}>Or host your own Room!</a>
+				</div>
 			</div>
 		</main>);
 	}
