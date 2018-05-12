@@ -48,7 +48,7 @@ let defaultActivePlaylist = {
 class App extends Component {
 	constructor() {
 		super();
-		this.socket = io('https://' + ipAddress + ':' + port + backendExtension);
+		this.socket = io('https://' + ipAddress + ':' + port);
 		let token = cookies.get('token');
 		if (token === undefined) {
 			token = null;
