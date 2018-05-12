@@ -112,6 +112,7 @@ app.get(backendExtension + '/rooms', async (req, res) => {
 */
 io.of('/b').on('connection', (socket) => {
 	//Local varibles, can only be used by the same connection (but in every call)
+	console.log('connection enabled');
 	let roomId = null;
 	let isHost = false;
 	let name = null;

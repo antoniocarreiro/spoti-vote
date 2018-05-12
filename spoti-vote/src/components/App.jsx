@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import MediaQuery from 'react-responsive';
 import queryString from 'query-string';
-import socketIOClient from 'socket.io-client'
+import io from 'socket.io-client'
 import Footer from './Footer.jsx';
 import Sidebar from './Sidebar.jsx';
 import CardContainer from './Cards/CardContainer.jsx';
@@ -48,7 +48,7 @@ let defaultActivePlaylist = {
 class App extends Component {
 	constructor() {
 		super();
-		this.socket = socketIOClient('http://' + ipAddress + ':' + port + backendExtension);
+		this.socket = io('http://' + ipAddress + ':' + port + backendExtension);
 		let token = cookies.get('token');
 		if (token === undefined) {
 			token = null;
