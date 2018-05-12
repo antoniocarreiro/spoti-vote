@@ -22,34 +22,64 @@ To solve this problem I thought about creating a website where users could choos
 ## Usage
 
 To use my webpage, you first want to download [NodeJS](https://nodejs.org/en/).
+You also have to install and configure [NGINX](https://www.nginx.com/).
+If your on ubuntu you can easily install it with `sudo apt-get install nginx`.
+To configure NGINX you have to open up `/etc/nginx/sites-available/default`, and add a server with two locations.
+Heres an example:
+```
+server {
+    listen 80;
+	
+    server_name YOUR_EXTERNAL_IP_ADDRESS;
+	
+    location / {
+        proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:FRONTEND_PORT;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+    
+    location /b {
+        proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+For more info see [here](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-14-04#set-up-reverse-proxy-server).
+
 Then clone my repository using:\
 `git clone https://github.com/Gabsii/spoti-vote.git`
 
 The following Environment Variables are key for the usage of this app. You want to set them using `SET` on Windows or `EXPORT` on a OSX. If this doesn't work try to set them in `/etc/environment`.
-\
-`PORT=8080`\
-`PORTBACK=8888`\
-`INTERNALADDRESS="localhost"`\
-`PORTOUTSIDE=80`\
-`ADDRESS="spoti-vote.com"`\
-`SPOTIFY_CLIENT_ID="FOO"`\
-`SPOTIFY_CLIENT_SECRET="BAR"`
-\
-After successfully cloning the repository, you want to startup a commandline in its folder and run `npm install` in:\
-\
-`.`\
-`+-- spoti-vote`\
-`|   +-- execute command here`\
-`+-- spoti-vote-backend`\
-`|   +-- execute command here`\
-\
-then manover back to the root folder and run:\
-\
-`npm install pm2 -g`\
-`pm2 start ecosystem.config.js`\
-\
+```
+PORT=8080
+PORTBACK=8888
+INTERNALADDRESS="localhost"
+PORTOUTSIDE=80
+ADDRESS="spoti-vote.com"
+SPOTIFY_CLIENT_ID="FOO"
+SPOTIFY_CLIENT_SECRET="BAR"
+```
+After successfully cloning the repository, you want to startup a commandline in its folder and run `npm install` in:
+```
+.
++-- spoti-vote
+|   +-- execute command here
++-- spoti-vote-backend
+|   +-- execute command here
+```
+then manover back to the root folder and run:
+```
+npm install pm2 -g
+pm2 start ecosystem.config.js
+```
 =======
-If you can't run a port below 1024 without root permission see [this](http://pm2.keymetrics.io/docs/usage/specifics/).
 Thanks to [MPJ](https://github.com/mpj/oauth-bridge-template) for providing a framework for the backend-logic.
 
 Congratulations! You now are able to use my webpage.
