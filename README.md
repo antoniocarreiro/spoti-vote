@@ -1,14 +1,6 @@
 # spoti-vote
 Web application to vote for the next song in Spotify Queue
 
-- [Project Description:](#project-description)
-	- [Requirements:](#requirements)
-	- [Usage](#usage)
-- [Credits](#credits)
-	- [Frameworks/Tools](#frameworkstools)
-	- [Useful links](#useful-links)
-	- [Images](#images)
-
 # Project Description:
 
 The idea for this project resulted as we have a Spotify class playlist with great songs we listen to in our breaks.
@@ -29,9 +21,9 @@ Heres an example:
 ```
 server {
     listen 80;
-	
+
     server_name YOUR_EXTERNAL_IP_ADDRESS;
-	
+
     location / {
         proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:FRONTEND_PORT;
         proxy_http_version 1.1;
@@ -40,7 +32,7 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-    
+
     location /b {
         proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;
         proxy_http_version 1.1;
@@ -49,7 +41,7 @@ server {
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-    
+
     location /socket.io {
         proxy_pass http://YOUR_PRIVATE_IP_ADDRESS:BACKEND_PORT;
         proxy_http_version 1.1;
@@ -88,14 +80,11 @@ then manover back to the root folder and run:
 npm install pm2 -g
 pm2 start ecosystem.config.js
 ```
-=======
 Thanks to [MPJ](https://github.com/mpj/oauth-bridge-template) for providing a framework for the backend-logic.
 
 Congratulations! You now are able to use my webpage.
 
 # Credits
-
-None
 
 ## Frameworks/Tools
 * Atom
