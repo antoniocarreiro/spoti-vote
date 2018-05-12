@@ -22,7 +22,7 @@ const backendExtension = '/b';
 const addressInside = process.env.INTERNALADDRESS || 'localhost';
 const portFront = process.env.PORT || 8080;
 const portBack = process.env.PORTBACK || 8888;
-const redirect_uri = 'http://' + addressOutside + ':' + portOutside + backendExtension + '/callback';
+const redirect_uri = 'https://' + addressOutside + ':' + portOutside + backendExtension + '/callback';
 
 const secTillDelete = 60;
 
@@ -76,7 +76,7 @@ app.get(backendExtension + '/callback', async (req, res) => {
 		json: true
 	};
 	request.post(authOptions, async (error, response, body) => {
-		let uri = 'http://' + addressOutside + ':' + portOutside + '/app';
+		let uri = 'https://' + addressOutside + ':' + portOutside + '/app';
 		let room = new Room(body.access_token, rooms, 4);
 
 		if (await room.fetchData() == true) {
@@ -84,7 +84,7 @@ app.get(backendExtension + '/callback', async (req, res) => {
 			console.log(uri + '/' + room.id);
 			res.redirect(uri + '/' + room.id); // + '?token=' + body.access_token);
 		} else {
-			res.redirect('http://' + addressOutside + ':' + portOutside);
+			res.redirect('https://' + addressOutside + ':' + portOutside);
 		}
 	});
 });

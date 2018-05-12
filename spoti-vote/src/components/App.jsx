@@ -48,7 +48,7 @@ let defaultActivePlaylist = {
 class App extends Component {
 	constructor() {
 		super();
-		this.socket = io('http://' + ipAddress + ':' + port + backendExtension);
+		this.socket = io('https://' + ipAddress + ':' + port + backendExtension);
 		let token = cookies.get('token');
 		if (token === undefined) {
 			token = null;
@@ -57,7 +57,7 @@ class App extends Component {
 		this.state = {
 			token: token,
 			roomId: window.location.pathname.split('/')[2],
-			loginPage: 'http://' + ipAddress + ':' + port,
+			loginPage: 'https://' + ipAddress + ':' + port,
 			isHost: false,
 			connectedUser: [],
 			playlists: [],

@@ -37,7 +37,7 @@ class LoginButton extends Component {
 	}
 
 	login() {
-		window.location.href = 'http://' + ipAddress + ':' + port + backendExtension + '/login';
+		window.location.href = 'https://' + ipAddress + ':' + port + backendExtension + '/login';
 	}
 
 	render() {

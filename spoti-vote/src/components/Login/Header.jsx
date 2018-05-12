@@ -103,7 +103,7 @@ class Header extends Component {
 					</li>
 					<li style={divider}></li>
 					<li style={itemStyle} onMouseEnter={this.toggleHover.bind(this)} onMouseLeave={this.toggleHover.bind(this)}>
-						<a style={linkStyle} href={'http://' + ipAddress + ':' + port + backendExtension + '/login'}>Host</a>
+						<a style={linkStyle} href={'https://' + ipAddress + ':' + port + backendExtension + '/login'}>Host</a>
 					</li>
 					<li style={{
 							...itemStyle,

@@ -39,7 +39,7 @@ class LoginButtonSecondary extends Component {
 	}
 
 	login() {
-		window.location.href = 'http://' + ipAddress + ':' + port + '/join';
+		window.location.href = 'https://' + ipAddress + ':' + port + '/join';
 	}
 
 	render() {
