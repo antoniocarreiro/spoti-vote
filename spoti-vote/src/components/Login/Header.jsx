@@ -4,7 +4,7 @@ import logo from '../../img/spotiLogo.svg';
 let constants = require('../../js/constants');
 let backgroundColor = constants.colors.background;
 const ipAddress = window.location.hostname || 'localhost';
-const port = window.location.port || 80;
+const port = window.location.port || 443;
 const backendExtension = '/b';
 
 let defaultDimensions = {

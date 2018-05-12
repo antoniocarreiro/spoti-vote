@@ -5,7 +5,7 @@ import '../../css/selectors.css';
 
 let constants = require('../../js/constants.js');
 const ipAddress = window.location.host || 'localhost';
-const port = window.location.port || 80;
+const port = window.location.port || 443;
 const backendExtension = '/b';
 
 let defaultStyle = {

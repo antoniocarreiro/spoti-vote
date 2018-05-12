@@ -10,7 +10,7 @@ import Cookies from 'universal-cookie';
 
 const constants = require('../js/constants');
 const ipAddress = window.location.host || 'localhost';
-const port = window.location.port || 80;
+const port = window.location.port || 443;
 const backendExtension = '/b';
 
 const cookies = new Cookies();

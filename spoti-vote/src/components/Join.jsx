@@ -4,7 +4,7 @@ import LoginButton from './Login/LoginButton.jsx';
 
 const constants = require('../js/constants');
 const ipAddress = window.location.host || 'localhost';
-const portFront = window.location.port || 80;
+const portFront = window.location.port || 443;
 const portBack = 8888;
 const backendExtension = '/b'
 

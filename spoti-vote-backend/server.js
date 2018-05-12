@@ -16,7 +16,7 @@ const io = socketIo(server);
 //Global Varibles
 
 const addressOutside = process.env.ADDRESS || 'spoti-vote.com';
-const portOutside = process.env.PORTOUTSIDE || 80;
+const portOutside = process.env.PORTOUTSIDE || 443;
 const backendExtension = '/b';
 
 const addressInside = process.env.INTERNALADDRESS || 'localhost';
