@@ -4,7 +4,6 @@ import '../../css/selectors.css';
 let constants = require('../../js/constants');
 const ipAddress = window.location.hostname || 'localhost';
 const port = window.location.port || 443;
-const backendExtension = '/b';
 
 let defaultStyle = {
 	padding: "17px 48px",
