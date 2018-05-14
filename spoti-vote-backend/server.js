@@ -181,7 +181,7 @@ io.on('connection', (socket) => {
 
 					socket.isHost = true;
 
-					let update = room.getDifference(socket.oldUpdate);
+					let update = room.getDifference(null);
 					socket.oldUpdate = _.cloneDeep(room);
 
 					update.playlists = room.getPlaylists();
@@ -197,7 +197,7 @@ io.on('connection', (socket) => {
 
 						socket.isHost = true;
 
-						let update = room.getDifference(socket.oldUpdate);
+						let update = room.getDifference(null);
 						socket.oldUpdate = _.cloneDeep(room);
 
 						update.playlists = room.getPlaylists();
@@ -235,7 +235,7 @@ io.on('connection', (socket) => {
 				socket.name = data.name;
 				room.addUser(socket.name);
 
-				let update = room.getDifference(socket.oldUpdate);
+				let update = room.getDifference(null);
 				socket.oldUpdate = _.cloneDeep(room);
 
 				socket.emit('initData', update);
@@ -287,7 +287,7 @@ io.on('connection', (socket) => {
 
 			let update = room.getDifference(socket.oldUpdate);
 			socket.oldUpdate = _.cloneDeep(room);
-
+			console.log(JSON.stringify(update).length);
 			socket.emit('update', update);
 		} else {
 			socket.emit('errorEvent', {message: 'Room was closed'});
@@ -345,6 +345,7 @@ async function theUpdateFunction(socket) {
 		let update = room.getDifference(socket.oldUpdate);
 
 		if (update !== null) {
+			console.log(JSON.stringify(update).length);
 			socket.emit('update', update);
 		}
 		socket.oldUpdate = _.cloneDeep(room);
