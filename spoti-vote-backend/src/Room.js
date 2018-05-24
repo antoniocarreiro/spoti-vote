@@ -541,7 +541,9 @@ method.fetchPlaylists = async function() {
 
 	let playlists = playlistRequestData.items;
 
-	while (next !== null) {
+	console.log(next);
+
+	while (next !== null && next !== undefined) {
 		playlistRequest = await fetch(next, {
 			headers: {
 				"Authorization": "Bearer " + this.host.token
@@ -565,7 +567,7 @@ method.fetchPlaylists = async function() {
 }
 
 method.fetchPlaylistTracks = async function(playlist) {
-	let trackRequest = await fetch(playlist.href + '/tracks?fields=items(track(name%2Cis_playable%2Chref%2Calbum(images)%2Cartists(name)%2C%20id))%2Cnext%2Coffset%2Ctotal', { //%2Cmarket='+this.host.country
+	let trackRequest = await fetch(playlist.href + '/tracks?market='+this.host.country+'&fields=items(track(name%2Cis_playable%2Chref%2Calbum(images)%2Cartists(name)%2C%20id))%2Cnext%2Coffset%2Ctotal', {
 		headers: {
 			"Authorization": "Bearer " + this.host.token
 		}
@@ -589,9 +591,14 @@ method.fetchPlaylistTracks = async function(playlist) {
 		tracks = tracks.concat(trackRequestData.items);
 	}
 
+	let returnTracks = [];
+	for (var i = 0; i < tracks.length; i++) {
+		if (tracks[i].track.is_playable === true) {
+			returnTracks.push(tracks[i]);
+		}
+	}
 
-
-	return tracks;
+	return returnTracks;
 }
 
 /**
