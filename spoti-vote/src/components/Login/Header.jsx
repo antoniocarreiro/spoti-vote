@@ -45,7 +45,6 @@ class Header extends Component {
 	}
 
 	showNav() {
-
 		if (!this.state.popupVisible) {
 			document.addEventListener('click', this.handleOutsideClick, false);
 		} else {
@@ -76,7 +75,6 @@ class Header extends Component {
 					...defaultDimensions,
 					marginRight: '20px'
 				}}>
-				{/* TODO: have a margin if enough space, make logo smaller and b/w */}
 				<img style={defaultDimensions
 } src={logo} alt={"logo"}></img>
 			</div>
@@ -85,7 +83,6 @@ class Header extends Component {
 					fontSize: "2em"
 				}}>Spoti Vote</b>
 			{/* TODO: Logo (b/w) + text as one image */}
-
 			<MediaQuery minWidth={constants.breakpoints.medium}>
 				{
 					(matches) => {
