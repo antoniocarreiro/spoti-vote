@@ -25,6 +25,7 @@ class App extends Component {
 		}
 
 		this.state = {
+			isPhone: (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1),
 			token: token,
 			roomId: window.location.pathname.split('/')[2],
 			loginPage: 'https://' + ipAddress + ':' + port,
@@ -61,7 +62,8 @@ class App extends Component {
 		this.socket.on('roomId', data => {
 			this.socket.emit('roomId', {
 				roomId: this.state.roomId,
-				token: this.state.token
+				token: this.state.token,
+				isPhone: this.state.isPhone
 			});
 		});
 
@@ -77,7 +79,8 @@ class App extends Component {
 			}).then((result) => {
 				this.socket.emit('twoRooms', {
 					value: result.value,
-					roomId: data.oldRoom
+					roomId: data.oldRoom,
+					isPhone: this.state.isPhone
 				});
 			});
 
