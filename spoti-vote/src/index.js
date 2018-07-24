@@ -7,6 +7,7 @@ import Usage from './pages/Usage.jsx';
 import './css/reset.css';
 import './css/fonts.css';
 import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 
 import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
@@ -21,3 +22,4 @@ ReactDOM.render((<BrowserRouter>
 
         </BrowserRouter>), document.getElementById('root'));
 registerServiceWorker();
+unregister();
