@@ -6,8 +6,8 @@ import Join from './pages/Join.jsx';
 import Usage from './pages/Usage.jsx';
 import './css/reset.css';
 import './css/fonts.css';
-//import registerServiceWorker from './registerServiceWorker';
-import { unregister } from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
+//import { unregister } from './registerServiceWorker';
 
 import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
@@ -21,5 +21,5 @@ ReactDOM.render((<BrowserRouter>
     </div>
 
         </BrowserRouter>), document.getElementById('root'));
-//registerServiceWorker();
-unregister();
+registerServiceWorker();
+//unregister();
