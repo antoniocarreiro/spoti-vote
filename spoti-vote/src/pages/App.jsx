@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import MediaQuery from 'react-responsive';
 import socketIOClient from 'socket.io-client';
 import Cookies from 'universal-cookie';
 import swal from 'sweetalert2';
+import {css} from 'glamor';
+
 import Footer from '../components/App/Footer.jsx';
 import Sidebar from '../components/App/Sidebar.jsx';
 import CardContainer from '../components/App/Cards/CardContainer.jsx';
@@ -13,6 +14,9 @@ const port = window.location.port || 443;
 const backendExtension = '/b';
 
 const cookies = new Cookies();
+const styles = {
+    main: css({backgroundColor: constants.colors.background, height: '100vh', width: '100vw'})
+};
 
 class App extends Component {
     constructor() {
@@ -24,7 +28,7 @@ class App extends Component {
         }
 
         this.state = {
-	    isPhone: (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1),
+	        isPhone: (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1),
             token: token,
             roomId: window.location.pathname.split('/')[2],
             loginPage: 'https://' + ipAddress + ':' + port,
@@ -50,7 +54,7 @@ class App extends Component {
             activeTracks: {},
             activePlayer: null,
             voted: null
-        };
+        }
     }
 
     componentDidMount() {
@@ -229,11 +233,10 @@ class App extends Component {
         let siblings = [];
         let sibling = elem.parentNode.firstChild;
         let skipMe = elem;
-        for (; sibling; sibling = sibling.nextSibling) {
+        for (; sibling; sibling = sibling.nextSibling)
             if (sibling.nodeType === 1 && sibling !== skipMe) {
                 siblings.push(sibling);
             }
-        }
         return siblings;
     }
 
@@ -261,33 +264,11 @@ class App extends Component {
     }
 
     render() {
-        return (<section style={{
-                backgroundColor: constants.colors.background,
-                height: '100vh',
-                width: '100vw'
-            }}>
-            <MediaQuery minWidth={constants.breakpoints.medium}>{
-                    (matches) => {
-                        if (matches) {
-                            return (<Sidebar skipHandler={this.skipHandler.bind(this)} isPhone={false} socket={this.socket} isHost={this.state.isHost} connectedUser={this.state.connectedUser} host={this.state.host} playlistHandler={this.selectPlaylist.bind(this)} activePlaylist={this.state.activePlaylist} activeTracks={this.state.activeTracks} playlists={this.state.playlists}/>);
-                        } else {
-                            return (<Sidebar skipHandler={this.skipHandler.bind(this)} isPhone={true} socket={this.socket} isHost={this.state.isHost} connectedUser={this.state.connectedUser} host={this.state.host} playlistHandler={this.selectPlaylist.bind(this)} activePlaylist={this.state.activePlaylist} activeTracks={this.state.activeTracks} playlists={this.state.playlists}/>);
-                        }
-                    }
-                }
-            </MediaQuery>
-            <MediaQuery minWidth={constants.breakpoints.medium}>{
-                    (matches) => {
-                        if (matches) { // = tablet^
-                            return (<CardContainer voteHandler={this.voteHandler.bind(this)} isPhone={false} room={this.state.roomId} name={this.state.name} isHost={this.state.isHost} activeTracks={this.state.activeTracks} socket={this.socket}/>);
-                        } else { // = phone
-                            return (<CardContainer voteHandler={this.voteHandler.bind(this)} isPhone={true} room={this.state.roomId} name={this.state.name} isHost={this.state.isHost} activeTracks={this.state.activeTracks} socket={this.socket}/>);
-                        }
-                    }
-                }
-            </MediaQuery>
+        return (<main className={`${styles.main}`}>
+            <Sidebar skipHandler={this.skipHandler.bind(this)} socket={this.socket} isHost={this.state.isHost} connectedUser={this.state.connectedUser} host={this.state.host} playlistHandler={this.selectPlaylist.bind(this)} activePlaylist={this.state.activePlaylist} activeTracks={this.state.activeTracks} playlists={this.state.playlists}/>
+            <CardContainer voteHandler={this.voteHandler.bind(this)} isPhone={false} room={this.state.roomId} name={this.state.name} isHost={this.state.isHost} activeTracks={this.state.activeTracks} socket={this.socket}/>
             <Footer isHost={this.state.isHost} activePlayer={this.state.activePlayer} socket={this.socket}/>
-        </section>);
+        </main>);
     }
 }
 
