@@ -9,6 +9,7 @@ import Sidebar from '../components/App/Sidebar.jsx';
 import CardContainer from '../components/App/Cards/CardContainer.jsx';
 
 const constants = require('../js/constants');
+
 const ipAddress = window.location.host || 'localhost';
 const port = window.location.port || 443;
 const backendExtension = '/b';

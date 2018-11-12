@@ -17,7 +17,6 @@ class Dashboard extends Component {
         super();
         this.state = {
             profile: {
-
                 name: null,
                 id: 0,
                 img: 'https://via.placeholder.com/152x152'
@@ -28,6 +27,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         const token = cookies.get('token');
+        console.log(token);
         this.fetchProfileData(token);
         this.fetchTopTracks(token);
     }
@@ -39,14 +39,15 @@ class Dashboard extends Component {
                 "Authorization": "Bearer " + token
             }
         }).then(response => response.json()).then(response => {
-            console.log(response);
-            this.setState({
-                profile: {
-                    name: response.display_name,
-                    id: response.id,
-                    img: response.images[0].url
-                }
-            });
+            if (response.error === undefined) {
+                this.setState({
+                    profile: {
+                        name: response.display_name,
+                        id: response.id,
+                        img: response.images[0].url
+                    }
+                });
+            }
         });
     }
 
@@ -57,7 +58,9 @@ class Dashboard extends Component {
                 "Authorization": "Bearer " + token
             }
         }).then(response => response.json()).then(response => {
-            this.setState({topTracks: response});
+            if (response.error === undefined) {
+                this.setState({topTracks: response});
+            }
         });
     }
 
