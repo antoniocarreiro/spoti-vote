@@ -35,7 +35,7 @@ const redirect_uri = uriBack + '/callback';
 const secTillDelete = 60;
 
 console.log('INFO: Redirect URL: ' + redirect_uri);
-console.log('INFO: backExtension: ' + backExtension);
+console.log('INFO: backExtension: ' + backExtension + ' yeet ' + process.env.BACKEXTENSION);
 
 let rooms = [];
 let users = [];
