@@ -21,7 +21,7 @@ const io = socketIo(server);
 
 const ipAddress = process.env.ADDRESS || 'localhost';       //Wichtig env.ADDRESS = 'spoti-vote.com' -> wen local egal
 const port = process.env.PORT || 80;                        //Wichtig env.PORT = 443 -> wenn local egal
-const backExtension = process.env.BACKEXTENSION || '';      //wichtig env.BACKEXTENSION = '/b' -> Wenn local egal
+const backExtension = process.env.BACKEXT || '';      //wichtig env.BACKEXTENSION = '/b' -> Wenn local egal
 const portBack = 8888;
 
 const uriFront = (backExtension == '' ? 'http://' + ipAddress + ':' + port : 'https://' + ipAddress + ':' + port)
