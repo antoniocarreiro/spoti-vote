@@ -82,7 +82,7 @@ function getRoomById(roomId) {
 /**
 * Login using the Spotify API (This is only a Redirect)
 */
-app.get(backExtension + '/login', (req, res) => {
+app.get('/b' + '/login', (req, res) => {
 	console.log('INFO: User was sent to Spotify login');
 	res.redirect('https://accounts.spotify.com/authorize?' + querystring.stringify({response_type: 'code', client_id: process.env.SPOTIFY_CLIENT_ID, scope: 'user-read-private user-read-email user-read-currently-playing user-modify-playback-state user-read-playback-state playlist-read-collaborative playlist-read-private', redirect_uri}));
 });
@@ -91,7 +91,7 @@ app.get(backExtension + '/login', (req, res) => {
 * The callback that will be called when the Login with the Spotify API is completed
 * Will redirect the user to the newly created room
 */
-app.get(backExtension + '/callback', async (req, res) => {
+app.get('/b' + '/callback', async (req, res) => {
 
     let options = {
         path: '/',
@@ -135,7 +135,7 @@ app.get(backExtension + '/callback', async (req, res) => {
 * The callback that will be called when the Login with the Spotify API is completed
 * Will redirect the user to the newly created room
 */
-app.get(backExtension + '/createRoom', async (req, res) => {
+app.get('/b' + '/createRoom', async (req, res) => {
     let room = new Room(users[0], rooms);
     let uri = 'http://' + ipAddress + ':' + portFront + '/app';
 
@@ -152,7 +152,7 @@ app.get(backExtension + '/createRoom', async (req, res) => {
 * @Returns ResponseCode of 200
 * @Returns content Array of all the rooms
 */
-app.get(backExtension + '/rooms', async (req, res) => {
+app.get('/b' + '/rooms', async (req, res) => {
 	console.log('INFO: /rooms has been called.');
 	res.setHeader('Access-Control-Allow-Origin', '*');
 
