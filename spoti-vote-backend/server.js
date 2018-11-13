@@ -22,7 +22,7 @@ const io = socketIo(server);
 const ipAddress = process.env.ADDRESS || 'localhost';
 const portFront = process.env.PORT || 80;
 const portBack = process.env.PORTBACK || 8888;
-const redirect_uri = 'http://' + ipAddress + ':' + portBack + '/callback';
+const redirect_uri = 'https://' + ipAddress + ':' + portBack + '/callback';
 
 
 const secTillDelete = 60;
