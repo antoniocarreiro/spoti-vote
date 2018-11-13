@@ -22,7 +22,7 @@ const io = socketIo(server);
 const ipAddress = process.env.ADDRESS || 'localhost';
 const portFront = process.env.PORT || 80;
 const portBack = process.env.PORTBACK || 8888;
-const redirect_uri = 'http://' + ipAddress + ':' + portBack + '/callback';
+const redirect_uri = 'http://' + ipAddress + '/b/callback';
 
 const secTillDelete = 60;
 
@@ -81,7 +81,7 @@ function getRoomById(roomId) {
 /**
 * Login using the Spotify API (This is only a Redirect)
 */
-app.get('/login', (req, res) => {
+app.get('/b/login', (req, res) => {
     console.log('INFO: User was sent to Spotify login');
     res.redirect('https://accounts.spotify.com/authorize?' + querystring.stringify({response_type: 'code', client_id: process.env.SPOTIFY_CLIENT_ID, scope: 'user-read-private user-read-email user-read-currently-playing user-modify-playback-state user-read-playback-state user-top-read playlist-read-collaborative playlist-read-private', redirect_uri}));
 });
@@ -90,7 +90,7 @@ app.get('/login', (req, res) => {
 * The callback that will be called when the Login with the Spotify API is completed
 * Will redirect the user to the newly created room
 */
-app.get('/callback', async (req, res) => {
+app.get('/b/callback', async (req, res) => {
 
     let options = {
         path: '/',
@@ -114,7 +114,7 @@ app.get('/callback', async (req, res) => {
 		json: true
 	};
 	request.post(authOptions, async (error, response, body) => {
-		let uri = 'http://' + ipAddress + ':' + portFront + '/dashboard';
+		let uri = 'http://' + ipAddress + '/dashboard';
         let user = new User(body.access_token, body.refresh_token, process.env.SPOTIFY_CLIENT_ID, process.env.SPOTIFY_CLIENT_SECRET);
 
         // Set cookie
@@ -134,9 +134,9 @@ app.get('/callback', async (req, res) => {
 * The callback that will be called when the Login with the Spotify API is completed
 * Will redirect the user to the newly created room
 */
-app.get('/createRoom', async (req, res) => {
+app.get('/b/createRoom', async (req, res) => {
     let room = new Room(users[0], rooms);
-    let uri = 'http://' + ipAddress + ':' + portFront + '/app';
+    let uri = 'http://' + ipAddress + '/app';
 
     console.log(room);
 
@@ -151,7 +151,7 @@ app.get('/createRoom', async (req, res) => {
 * @Returns ResponseCode of 200
 * @Returns content Array of all the rooms
 */
-app.get('/rooms', async (req, res) => {
+app.get('/b/rooms', async (req, res) => {
     console.log('INFO: /rooms has been called.');
     res.setHeader('Access-Control-Allow-Origin', '*');
 
